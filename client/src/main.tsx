@@ -11,6 +11,7 @@ import { SigninPage } from "./pages/SigninPage.tsx";
 import { Toaster } from "react-hot-toast";
 import { SignupPage } from "./pages/SignupPage.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
+import ShopDashboard from "./pages/ShopDashboard.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+  },
+  {
+    path: "/dashboard/:shopName",
+    element: <ShopDashboard />,
   },
   {
     path: "/signin",
