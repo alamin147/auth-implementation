@@ -39,6 +39,13 @@ A full-stack web application for managing shop with user authentication and shop
 -  User profile retrieval
 -  Shop name management
 -  Protected API routes
+### Sub features
+-  Form validation with Zod
+-  Error handling and notifications
+-  Responsive design with TailwindCSS
+-  Database error handling (validation, unique constraints, etc.)
+-  Environment variable management
+-  CORS enabled for cross-origin requests
 
 ##  Project Setup
 
