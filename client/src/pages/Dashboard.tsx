@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { logout } from "../redux/features/auth/authSlice";
 import { getUserInfo } from "../redux/authUlits";
 import { useGetUserShopsQuery } from "../redux/features/auth/authApi";
@@ -9,9 +9,25 @@ import toast from "react-hot-toast";
 const Dashboard: React.FC = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = getUserInfo();
+  const token = useAppSelector((state) => state.auth.token);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsAuthLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!isAuthLoading && !user && !token) {
+      navigate("/signin");
+    }
+  }, [isAuthLoading, user, token, navigate]);
 
   const {
     data: shopsData,
@@ -32,6 +48,44 @@ const Dashboard: React.FC = () => {
   const handleProfileClick = () => {
     setShowProfileMenu(!showProfileMenu);
   };
+
+  if (isAuthLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        {/* Loading Header Skeleton */}
+        <header className="bg-white shadow-sm border-b">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              <div className="flex items-center">
+                <div className="h-6 w-24 bg-gray-200 rounded animate-pulse"></div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-gray-200 rounded-full animate-pulse"></div>
+                <div className="h-4 w-20 bg-gray-200 rounded animate-pulse hidden md:block"></div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        {/* Loading Content */}
+        <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+          <div className="px-4 py-6 sm:px-0">
+            <div className="border-4 border-dashed border-gray-200 rounded-lg h-96 flex items-center justify-center">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+                <h2 className="text-lg font-medium text-gray-600">
+                  Loading Dashboard...
+                </h2>
+                <p className="text-sm text-gray-500 mt-2">
+                  Please wait while we load your data
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   if (!user) {
     return (
