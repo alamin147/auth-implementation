@@ -10,11 +10,16 @@ import App from "./App.tsx";
 import { SigninPage } from "./pages/SigninPage.tsx";
 import { Toaster } from "react-hot-toast";
 import { SignupPage } from "./pages/SignupPage.tsx";
+import Dashboard from "./pages/Dashboard.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
   },
   {
     path: "/signin",
