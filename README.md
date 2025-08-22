@@ -66,16 +66,10 @@ copy all from .env.example into .env
 # BCRYPT_SALTROUNDS=
 # JWT_EXPIRES_IN=
 # JWT_SECRETS=
+# PORT=
+# CLIENT_URL=
 
-PORT = 5000
-CLIENT_URL =https://auth-shop-five.vercel.app
-
-
-# Generate Prisma client and run migrations
-npx prisma migrate dev
-npx prisma generate
-
-# Start development server
+# Start the server locally
 npm start
 ```
 
