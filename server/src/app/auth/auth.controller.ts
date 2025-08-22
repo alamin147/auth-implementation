@@ -33,7 +33,23 @@ const signin = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+const getProfile = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const userId = req.user.id;
+    const result = await authService.getUserProfile(userId);
+    sendResponse(res, {
+      statusCode: StatusCodes.OK,
+      success: true,
+      message: "Profile retrieved successfully",
+      data: result,
+    });
+  } catch (error: any) {
+    next(error);
+  }
+};
+
 export const authController = {
   signup,
   signin,
+  getProfile,
 };

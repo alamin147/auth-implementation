@@ -111,7 +111,22 @@ const signupUser = async (data: SignupData) => {
   };
 };
 
+const getUserProfile = async (userId: string) => {
+  const user = await userService.getUserById(userId);
+
+  if (!user) {
+    throw new AppError(StatusCodes.NOT_FOUND, "User not found");
+  }
+
+  return {
+    id: user.id,
+    username: user.username,
+    shopNames: user.shopNames.map((shop: any) => shop.name),
+  };
+};
+
 export const authService = {
   signinUser,
   signupUser,
+  getUserProfile,
 };
