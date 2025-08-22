@@ -11,32 +11,38 @@ const passwordSchema = z
   );
 
 const userSignupSchema = z.object({
-  body: z.object({
-    username: z
-      .string({
-        required_error: "Username field is required",
-      })
-      .min(3, "Username must be at least 3 characters long"),
-    password: passwordSchema,
-    shopNames: z
-      .array(z.string().min(1, "Shop name cannot be empty"))
-      .min(3, "You must enter at least 3 shop names")
-      .refine((names: string[]) => new Set(names).size === names.length, {
-        message: "Shop names must be unique",
-      }),
-  }),
+  body: z
+    .object({
+      username: z
+        .string({
+          required_error: "Username field is required",
+        })
+        .min(3, "Username must be at least 3 characters long"),
+      password: passwordSchema,
+      shopNames: z
+        .array(z.string().min(1, "Shop name cannot be empty"), {
+          required_error: "Shop names are required",
+        })
+        .min(3, "You must enter at least 3 shop names")
+        .refine((names: string[]) => new Set(names).size === names.length, {
+          message: "Shop names must be unique",
+        }),
+    })
+    .strict(),
 });
 
 const userSigninSchema = z.object({
-  body: z.object({
-    username: z.string({
-      required_error: "Username field is required",
-    }),
-    password: z.string({
-      required_error: "Password field is required",
-    }),
-    rememberMe: z.boolean().optional(),
-  }),
+  body: z
+    .object({
+      username: z.string({
+        required_error: "Username field is required",
+      }),
+      password: z.string({
+        required_error: "Password field is required",
+      }),
+      rememberMe: z.boolean().optional(),
+    })
+    .strict(),
 });
 
 export const UserSchema = {
