@@ -62,10 +62,14 @@ npm install
 
 # Create .env file
 copy all from .env.example into .env
-# Configure your environment variables:
-# DATABASE_URL="postgresql://username:password@localhost:5432/auth_db"
-# JWT_SECRET="your-jwt-secret-key"
-# PORT=5000
+# DATABASE_URL=
+# BCRYPT_SALTROUNDS=
+# JWT_EXPIRES_IN=
+# JWT_SECRETS=
+
+PORT = 5000
+CLIENT_URL =https://auth-shop-five.vercel.app
+
 
 # Generate Prisma client and run migrations
 npx prisma migrate dev
@@ -80,7 +84,10 @@ npm start
 cd client
 npm install
 
-# Start development server
+# Create .env file
+copy all from .env.example into .env
+# VITE_SERVER_URI=
+# VITE_PRODUCTION=
 npm run dev
 ```
 

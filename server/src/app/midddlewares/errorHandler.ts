@@ -85,7 +85,9 @@ const errorHandler = (
     // Get unknown/unrecognized fields
     const unknownFields = err.errors
       .filter((error) => error.code === "unrecognized_keys")
-      .flatMap((error) => error.keys || []);
+      .flatMap((error) =>
+        'keys' in error ? (error as any).keys || [] : []
+      );
 
     // Get all error messages
     const allErrorMessages = err.errors.map((error) => error.message);
