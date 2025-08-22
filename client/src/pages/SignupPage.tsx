@@ -57,7 +57,7 @@ export const SignupPage = () => {
         dispatch(setUser({ user: decoded, token }));
         toast.success("Account created successfully!");
         console.log("Decoded User:", decoded);
-        navigate("/");
+        navigate("/dashboard");
       }
     } catch (error: any) {
       console.error("Signup failed:", error);

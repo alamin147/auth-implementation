@@ -39,7 +39,7 @@ export const SigninPage = () => {
         dispatch(setUser({ user: decoded, token }));
         toast.success("Sign in successful!");
         console.log("Decoded User:", decoded);
-        navigate("/");
+        navigate("/dashboard");
       }
     } catch (error: any) {
       console.error("Login failed:", error);
