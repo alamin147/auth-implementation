@@ -14,12 +14,12 @@ const ShopDashboard: React.FC = () => {
   const navigate = useNavigate();
   const user = getUserInfo();
 
-  const {
-    data: shopsData,
-    isLoading: shopsLoading,
-  } = useGetUserShopsQuery(user?.id || "", {
-    skip: !user?.id,
-  });
+  const { data: shopsData, isLoading: shopsLoading } = useGetUserShopsQuery(
+    user?.id || "",
+    {
+      skip: !user?.id,
+    }
+  );
 
   // Check if user owns this shop
   const userOwnsShop = shopsData?.data?.shopNames?.some(
@@ -93,8 +93,12 @@ const ShopDashboard: React.FC = () => {
             <div className="border-4 border-dashed border-gray-200 rounded-lg h-96 flex items-center justify-center">
               <div className="text-center">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-                <h2 className="text-lg font-medium text-gray-600">Loading Shop Dashboard...</h2>
-                <p className="text-sm text-gray-500 mt-2">Please wait while we load your shop data</p>
+                <h2 className="text-lg font-medium text-gray-600">
+                  Loading Shop Dashboard...
+                </h2>
+                <p className="text-sm text-gray-500 mt-2">
+                  Please wait while we load your shop data
+                </p>
               </div>
             </div>
           </div>
@@ -179,15 +183,6 @@ const ShopDashboard: React.FC = () => {
 
                     {/* Shop Actions */}
                     <div className="space-y-2 mb-4">
-                      <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md transition-colors duration-200">
-                        Shop Settings
-                      </button>
-                      <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md transition-colors duration-200">
-                        View Analytics
-                      </button>
-                      <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md transition-colors duration-200">
-                        Manage Products
-                      </button>
                       <button
                         onClick={handleBackToDashboard}
                         className="w-full text-left px-3 py-2 text-sm text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200"
@@ -220,38 +215,9 @@ const ShopDashboard: React.FC = () => {
                 This is {shopName} shop
               </h2>
               <p className="text-gray-500 mb-6">
-                Welcome to your {shopName} shop dashboard. Manage your products, orders, and settings here.
+                Welcome to your {shopName} shop dashboard. Manage your products,
+                orders, and settings here.
               </p>
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-lg font-medium text-gray-900 mb-4">
-                  Shop Analytics
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-blue-600">0</p>
-                    <p className="text-sm text-gray-600">Total Orders</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-green-600">$0</p>
-                    <p className="text-sm text-gray-600">Revenue</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-purple-600">0</p>
-                    <p className="text-sm text-gray-600">Products</p>
-                  </div>
-                </div>
-                <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-                  <button className="px-4 py-2 bg-cyan-500 text-white rounded hover:bg-blue-600 transition-colors duration-200">
-                    Manage Products
-                  </button>
-                  <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors duration-200">
-                    View Orders
-                  </button>
-                  <button className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition-colors duration-200">
-                    Shop Settings
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
