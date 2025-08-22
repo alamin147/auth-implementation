@@ -27,4 +27,11 @@ router.get(
   authController.getProfile
 );
 
+// Get user by ID
+router.get(
+  "/user/:userId",
+  auth(),
+  authController.getUserById
+);
+
 export default router;

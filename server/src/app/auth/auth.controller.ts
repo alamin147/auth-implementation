@@ -48,8 +48,24 @@ const getProfile = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+const getUserById = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { userId } = req.params;
+    const result = await authService.getUserById(userId);
+    sendResponse(res, {
+      statusCode: StatusCodes.OK,
+      success: true,
+      message: "User retrieved successfully",
+      data: result,
+    });
+  } catch (error: any) {
+    next(error);
+  }
+};
+
 export const authController = {
   signup,
   signin,
   getProfile,
+  getUserById,
 };
