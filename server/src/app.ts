@@ -1,7 +1,8 @@
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-
+import routes from "./app/routes/routes";
+import errorHandler from "./app/midddlewares/errorHandler";
 dotenv.config();
 
 const app: Application = express();
@@ -19,6 +20,9 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req: Request, res: Response) => {
   res.send({ message: "Welcome to server!" });
 });
+
+app.use("/api", routes);
+app.use(errorHandler);
 
 app.use((req: Request, res: Response) => {
   res.status(404).send({
