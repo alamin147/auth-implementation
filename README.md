@@ -96,6 +96,10 @@ npm run dev
 - Frontend: http://localhost:5173
 - Backend: http://localhost:5000
 
+### Live Links
+- Frontend: [Link](https://auth-shop-five.vercel.app)
+- Backend: [Link](https://auth-shop-server.vercel.app)
+
 ### Production Setup
 
 #### Backend Deployment
