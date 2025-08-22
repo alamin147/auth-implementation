@@ -110,6 +110,11 @@ cd client
 npm run build
 # Deploy the dist/ folder to your hosting service
 ```
+#### vercel
+```bash
+I used vercel for deployment, so i ran
+vercel --prod (after creating a vercel project through the vercel CLI)
+```
 
 ##  API Documentation
 
