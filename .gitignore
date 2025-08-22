@@ -1,8 +1,7 @@
 server/.env
 server/node_modules
 server/dist
-README.md
+
 client/node_modules
 client/dist
 client/.env
-
